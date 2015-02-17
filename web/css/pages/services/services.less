@@ -53,28 +53,28 @@
         left: 0;
         .transition(all 150ms ease-in-out);
       }
-      &[href="#web-development"] {
+      &[href$="web-development"] {
         &:before {
           width: 17px;
           height: 16px;
           background-position: -164px -37px;
         }
       }
-      &[href="#web-design"] {
+      &[href$="web-design"] {
         &:before {
           width: 19px;
           height: 18px;
           background-position: -182px -37px;
         }
       }
-      &[href="#mobile-development"] {
+      &[href$="mobile-development"] {
         &:before {
           width: 15px;
           height: 15px;
           background-position: -204px -37px;
         }
       }
-      &[href="#game-development"] {
+      &[href$="game-development"] {
         &:before {
           width: 15px;
           height: 15px;
@@ -88,7 +88,6 @@
     margin: 0 0 0 7.7083%;
 
     .services-img {
-      display: none;
        position: absolute;
       left: -28px;
       top: -19px;
@@ -124,7 +123,7 @@
     margin: 0 0 100px 16.9791%;
     display: none;
 
-    &#web-development {
+    &.open {
       display: block;
     }
   }
@@ -239,6 +238,9 @@
       margin-left: 0;
     }
   }
+  .services-img {
+    display: none;
+  }
 }
 
 @media screen and (max-width:670px) {
@@ -316,8 +318,5 @@
       color: @global-text-color;
       margin-bottom: 9px; 
     }
-  }
-  .accordion-wrapper {
-    display: none;
   }
 }

@@ -23,23 +23,31 @@
                 </li>
             {% endfor %}
         </ul>
-        {#<div class="tab-content-wrapper">#}
+        <div class="tab-content-wrapper">
             <div class="services-img img-{{ category.ordernum }}"></div>
-            <div id="{{ category.slug }}" class="tab-content" style="display: block !important;">
-                <a class="tab-title">{{ category.name }}</a>
-                <div class="accordion-wrapper">
-                    <div class="tab-text">
-                        {{ category.description | raw }}
-                    </div>
-                    <div class="price">
-                        {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
-                    </div>
-                    <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
-                        <span class="arrow-btn"></span>
-                        <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
-                    </a>
-                </div>
-            </div>
-        {#</div>#}
+            {% for c in categories %}
+                    {% if c.id == category.id %}
+                        <div id="{{ c.slug }}" class="tab-content open">
+                            <a class="tab-title">{{ category.name }}</a>
+                            <div class="accordion-wrapper">
+                                <div class="tab-text">
+                                    {{ category.description | raw }}
+                                </div>
+                                <div class="price">
+                                    {{ "Стоимость проекта %wrap_start%от %price% $%wrap_end%"|trans({'%price%': category.cost, '%wrap_start%': '<span>', '%wrap_end%': '</span>'})|raw }}
+                                </div>
+                                <a class="show-in-portfolio" href="{{ path('portfolio_category_view', {'slug': category.slug}) }}">
+                                    <span class="arrow-btn"></span>
+                                    <span>{{ "посмотреть примеры проектов %project%"|trans({'%project%': linkTexts[category.slug] | default('') | trans }) }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div id="{{ c.slug }}" class="tab-content">
+                            <a class="tab-title"  href="{{ path('portfolio_categories_list', {'slug': c.slug }) }}">{{ c.name }}</a>
+                         </div>
+                    {% endif %}
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}
