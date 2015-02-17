@@ -366,6 +366,12 @@ $(function () {
                 $('.services-links').removeClass('open');
             }
         });
+
+        //Set active tab in head of list in mobile view
+        if(typeof window.matchMedia == "function" && window.matchMedia("(max-width: 660px)").matches) {
+            var $activeTab = $('.services-links .active').detach();
+            $('.services-links').prepend($activeTab);
+        }
     }
 
     if (location.hash) {               // do the test straight away
